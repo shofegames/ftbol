@@ -39,6 +39,10 @@
 
   var REGULATION = 5;
 
+  // Velocidad de la barra de potencia, en ciclos por segundo. Más alto es
+  // más rápido y por lo tanto más difícil de frenar donde uno quiere.
+  var POWER_SPEED = 2.2;
+
   /* ============================ utilidades ============================ */
 
   function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
@@ -1035,7 +1039,7 @@
 
     if (S.phase === 'SHOOTER' && S.sub === 'power') {
       S.powerT += dt;
-      S.power = (Math.sin(S.powerT * Math.PI * 1.45 - Math.PI / 2) + 1) / 2;
+      S.power = (Math.sin(S.powerT * Math.PI * POWER_SPEED - Math.PI / 2) + 1) / 2;
     }
 
     if (S.phase === 'ANIM') {
